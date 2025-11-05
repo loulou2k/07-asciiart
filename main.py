@@ -18,9 +18,15 @@ def artcode_i(s):
         list: la liste des tuples (caractère, nombre d'occurences)
     """
     
-    # votre code ici
+    result = []
+    deja_vus = set()
 
-    return [ ]
+    for car in s:
+        if car not in deja_vus:
+            count = s.count(car)
+            result.append((car, count))
+            deja_vus.add(car)
+    return result
 
 
 def artcode_r(s):
@@ -39,7 +45,15 @@ def artcode_r(s):
     # recherche nombre de caractères identiques au premier
     # appel récursif
 
-    return []
+    if s == "":
+        return []
+
+    # Traitement du premier caractère
+    premier = s[0]
+    count = s.count(premier)
+
+    reste = s.replace(premier, "")
+    return [(premier, count)] + artcode_r(reste)
     
 
 #### Fonction principale
